@@ -59,7 +59,7 @@ async function main(year) {
         allContributions[pr.user.login] = contributions;
     }
 
-    await writeFileAsync('contributions.json', JSON.stringify(allContributions));
+    await writeFileAsync('docs/contributions.json', JSON.stringify(allContributions));
 }
 
 main(2019);
