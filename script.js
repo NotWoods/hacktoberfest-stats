@@ -31,10 +31,15 @@ async function* hacktoberfestPrs(year, ignoreUsers) {
         q: [
             'is:pr',
             'org:mozilla-mobile',
+            // During October
             `created:${year}-10-01..${year}-10-31`,
+            // No invalid PRs
             '-label:invalid',
+            // Ignore bots
             '-author:MickeyMoz',
-            '-author:mozilla-l10n-automation-bot'
+            '-author:mozilla-l10n-automation-bot',
+            // Ignore Mozilla members not in the org
+            '-author:espertus'
         ].join(' ')
     });
     for await (const response of octokit.paginate.iterator(options)) {
